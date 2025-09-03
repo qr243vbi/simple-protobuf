@@ -335,7 +335,8 @@ auto parse_comment( spb::char_stream & stream ) -> proto_comment
 
 void parse_top_level_service_body( spb::char_stream & stream, proto_file &, proto_comment && )
 {
-    return stream.throw_parse_error( "not implemented" );
+    while( !stream.consume( '}' ) )
+        stream.consume_current_char( true );
 }
 
 void consume_statement_end( spb::char_stream & stream, proto_comment & comment )
